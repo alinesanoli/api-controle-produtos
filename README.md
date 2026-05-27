@@ -1,5 +1,5 @@
 # API de Controle de Produtos
-API REST desenvolvida com ASP.NET Core para gerenciamento de produtos, categorias e fornecedores
+API REST desenvolvida com ASP.NET Core para gerenciamento de produtos, categorias e fornecedores.  
 O projeto está sendo realizado para aprofundamento em backend .NET e arquitetura em camadas.
 
 ## Tecnologias utilizadas
