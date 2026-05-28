@@ -15,8 +15,8 @@ namespace ApiWeb.Data
 
         public DbSet<ProdutoEntity> Produtos {get; set; } 
         public DbSet<CategoriaEntity> Categorias { get; set; }
-        public DbSet<FornecedorEntity> Fornecedor { get; set; }
-        public DbSet<ProdutoFornecedorEntity> ProdutoFornecedor { get; set; }
+        public DbSet<FornecedorEntity> Fornecedores { get; set; }
+        public DbSet<ProdutoFornecedorEntity> ProdutoFornecedores { get; set; }
 
 
     }
