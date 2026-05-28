@@ -28,14 +28,49 @@ namespace SistemaControleApi.Service
         {
             var produtoExistente = await _produtoRepository.BuscarProdutos();
 
-            var codigoDuplicado = produtoExistente.FirstOrDefault(p => p.CodigoBarras == produto.CodigoBarras);
+            var codigoDuplicado = produtoExistente.FirstOrDefault(p => p.CodigoBarras == produto.CodigoBarras); // Verifica se o código de barras já existe para outro produto
 
-            if(codigoDuplicado != null)
+            if (codigoDuplicado != null)
             {
                 throw new Exception("Código de barras já existe para outro produto.");
             }
 
             return await _produtoRepository.CriarProduto(produto);
+        }
+
+        public async Task<bool> EditarProduto(int id, ProdutoEntity produtoEditado)
+        {
+            var produto = await _produtoRepository.BuscarProdutoPorId(id);
+
+            if(produto == null)
+            {
+                return false;
+            }
+
+            produto.Nome = produtoEditado.Nome;
+            produto.Descricao = produtoEditado.Descricao;
+            produto.Marca = produtoEditado.Marca;
+            produto.QuantidadeEstoque = produtoEditado.QuantidadeEstoque;
+            produto.CodigoBarras = produtoEditado.CodigoBarras;
+
+            await _produtoRepository.AtualizarProduto(produto);
+
+            return true;
+
+        }
+
+        public async Task<bool> RemoverProduto(int id)
+        {
+            var produto = await _produtoRepository.BuscarProdutoPorId(id);
+
+            if (produto == null)
+            {
+                return false;
+            }
+
+            await _produtoRepository.RemoverProduto(produto);
+
+            return true;
         }
 
     }
